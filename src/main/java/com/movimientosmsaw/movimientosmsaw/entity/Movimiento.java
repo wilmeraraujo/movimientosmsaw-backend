@@ -28,11 +28,18 @@ public class Movimiento {
 	private Long id;
 	private Integer valor;
 	private String descripcion;
+	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tipo_movimiento_id")
 	@NotNull
 	private TipoMovimiento tipoMovimiento;
+	
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "persona_id")
+	@NotNull
+	private Persona persona;
 	
 	
 
