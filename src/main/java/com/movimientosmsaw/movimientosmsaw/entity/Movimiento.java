@@ -1,7 +1,12 @@
 package com.movimientosmsaw.movimientosmsaw.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -40,6 +46,22 @@ public class Movimiento {
 	@JoinColumn(name = "persona_id")
 	@NotNull
 	private Persona persona;
+	
+	@Column(name = "fecha_movimiento")
+    private LocalDate fecha;
+
+	@Column(name = "hora_movimiento")
+	private LocalTime hora;
+
+	@Column(name = "created_at")
+    private LocalDateTime createdAt;
+	
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+        fecha = LocalDate.now();
+        hora = LocalTime.now();
+    }
 	
 	
 
