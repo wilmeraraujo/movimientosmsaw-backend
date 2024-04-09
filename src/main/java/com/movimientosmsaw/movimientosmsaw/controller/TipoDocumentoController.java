@@ -17,7 +17,7 @@ import com.movimientosmsaw.movimientosmsaw.entity.TipoDocumento;
 import com.movimientosmsaw.movimientosmsaw.service.TipoDocumentoService;
 
 @RestController
-@RequestMapping(value="/tipo-documento")
+@RequestMapping(value="/api/v1/tipo-documento")
 public class TipoDocumentoController {
 
 	@Autowired

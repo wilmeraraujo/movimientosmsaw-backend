@@ -17,7 +17,7 @@ import com.movimientosmsaw.movimientosmsaw.entity.Persona;
 import com.movimientosmsaw.movimientosmsaw.service.PersonaService;
 
 @RestController
-@RequestMapping(value="/persona")
+@RequestMapping(value="/api/v1/persona")
 public class PersonaController {
 	
 	@Autowired

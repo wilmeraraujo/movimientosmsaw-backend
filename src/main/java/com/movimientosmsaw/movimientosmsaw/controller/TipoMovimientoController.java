@@ -18,7 +18,7 @@ import com.movimientosmsaw.movimientosmsaw.entity.TipoMovimiento;
 import com.movimientosmsaw.movimientosmsaw.service.TipoMovimientoService;
 
 @RestController
-@RequestMapping(value="/tipo-movimiento")
+@RequestMapping(value="/api/v1/tipo-movimiento")
 public class TipoMovimientoController {
 	
 	@Autowired
