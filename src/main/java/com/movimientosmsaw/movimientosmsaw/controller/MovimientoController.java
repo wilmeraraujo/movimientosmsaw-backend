@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.movimientosmsaw.movimientosmsaw.entity.Movimiento;
-import com.movimientosmsaw.movimientosmsaw.entity.TipoMovimiento;
 import com.movimientosmsaw.movimientosmsaw.service.MovimientoService;
 
 @RestController

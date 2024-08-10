@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,7 @@ import com.movimientosmsaw.movimientosmsaw.entity.TipoDocumento;
 import com.movimientosmsaw.movimientosmsaw.service.TipoDocumentoService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")//, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE,RequestMethod.OPTIONS})
 @RequestMapping(value="/api/v1/tipo-documento")
 public class TipoDocumentoController {
 
@@ -24,6 +27,7 @@ public class TipoDocumentoController {
 	private TipoDocumentoService tipoDocumentoService;
 	
 	@GetMapping
+	//@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok().body(tipoDocumentoService.findAll());
 	}
@@ -47,5 +51,25 @@ public class TipoDocumentoController {
 		tipoDocumentoDb.setDescripcion(tipoDocumento.getDescripcion());
 		
 		return  ResponseEntity.status(HttpStatus.CREATED).body(tipoDocumentoService.save(tipoDocumentoDb));
+	}
+	
+	@GetMapping("/search/{term}")
+	public ResponseEntity<?> filter(@PathVariable String term){
+		return ResponseEntity.ok(tipoDocumentoService.findByTipoDesc(term));
+	}
+	
+	@DeleteMapping("/{id}")
+	//@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+	    if (tipoDocumentoService.findById(id).isPresent()) {
+	        try {
+	            tipoDocumentoService.deleteById(id);
+	            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo eliminar el tipo de documento con id " + id);
+	        }
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el tipo de documento con id " + id);
+	    }
 	}
 }

@@ -13,5 +13,7 @@ public interface TipoDocumentoService {
 	
 	public TipoDocumento save(TipoDocumento tipoDocumento);
 	
+	public List<TipoDocumento> findByTipoDesc(String term);
+	
 	public void deleteById(Long id);
 }

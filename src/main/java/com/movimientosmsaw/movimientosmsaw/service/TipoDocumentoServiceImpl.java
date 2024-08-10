@@ -38,4 +38,9 @@ public class TipoDocumentoServiceImpl implements TipoDocumentoService {
 		tipoDocumentoRepository.deleteById(id);
 	}
 
+	@Override
+	public List<TipoDocumento> findByTipoDesc(String term) {
+		return tipoDocumentoRepository.findByTipoDesc(term);
+	}
+
 }
